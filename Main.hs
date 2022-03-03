@@ -1,6 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE BlockArguments #-}
 
+
 module Main where
 
 import Prelude hiding (head, id, div)
@@ -9,6 +10,7 @@ import qualified Data.Text.Lazy.IO as TLIO (writeFile)
 
 import Web.Scotty
 
+import Network.HTTP.Types.Status
 import Network.Wai.Middleware.Static
 import Network.Wai.Middleware.RequestLogger
 
@@ -26,3 +28,6 @@ main = do
     middleware logStdoutDev
     get "/" do
       html $ renderHtml home
+    post "/test" do
+      theInput <- body
+      status accepted202 -- hahahahahahahhahahaha FUCK you
