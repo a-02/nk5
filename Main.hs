@@ -6,12 +6,11 @@ module Main where
 
 import Prelude hiding (head, id, div)
 
-import qualified Data.Text.Lazy.IO       as TLIO (appendFile, writeFile)
-
-import qualified Data.ByteString.Lazy    as BSL
+import qualified Data.Text.Lazy.IO    as TLIO (appendFile, writeFile)
+import qualified Data.ByteString.Lazy as BSL
+import qualified Clay                 as CSS (render)
 
 import Web.Scotty
-
 import Network.HTTP.Types.Status
 import Network.Wai.Middleware.Static
 import Network.Wai.Middleware.RequestLogger
@@ -19,8 +18,6 @@ import Network.Wai.Middleware.RequestLogger
 import Text.Blaze.Html.Renderer.Text (renderHtml)
 
 import Control.Monad.IO.Class
-
-import qualified Clay as CSS (render)
 
 import Content (home)
 import Style (fullStyle)
