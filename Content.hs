@@ -2,24 +2,34 @@
 
 module Content where
 
-import Prelude hiding (head)
+import Prelude hiding (head, id)
 
 import Text.Blaze.Html5
-import Text.Blaze.Html5.Attributes
+import Text.Blaze.Html5.Attributes hiding (form)
 import Text.Blaze
 
 home :: Html
 home = 
-  html $ do
+  docTypeHtml $ do
     head $ do
       link ! rel "stylesheet" ! href "/index.css"
       script ! src "/index.js" $ ""
-    body $ do
-      input ! type_ "button" ! class_ "topleft"
+    body ! class_ "day" $ do
+      input ! type_ "button" ! class_ "topleft" ! id "topleft" ! value "day/night" -- light/dark mode
       h3 "Click here to receive your fortune."
       h6 $ do
         p $ myTwitter
-        p $ "Hire me. I'm available."
+        form ! action "/test" 
+             ! method "post"
+             ! enctype "application/x-www-form-urlencoded"
+             ! class_ "form1" $ do  
+          input ! type_ "text" 
+                ! class_ "fortune"
+                ! id "fortune"
+                ! name "fortune"
+                ! size "30" 
+                ! maxlength "30"
+                ! placeholder "Write another's fortune."
         p $ myGithub
 
 myTwitter = a ! href "https://twitter.com/nikshalark" $ "twitter"
